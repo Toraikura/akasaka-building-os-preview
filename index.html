@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#193e39" />
+    <title>赤坂一棟OS｜テスト入口</title>
+    <style>
+      :root {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+          "Noto Sans JP", sans-serif;
+        color: #193e39;
+        background: #f6f5ef;
+        line-height: 1.8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        width: min(720px, 100%);
+        padding: 56px 24px 40px;
+        margin: auto;
+      }
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        font-weight: 700;
+      }
+      .tag {
+        display: inline-block;
+        margin: 28px 0 0;
+        background: #e8ddbd;
+        border-radius: 30px;
+        padding: 5px 14px;
+        font-size: 12px;
+      }
+      h1 {
+        font-size: clamp(32px, 7vw, 46px);
+        line-height: 1.35;
+        margin: 22px 0 14px;
+      }
+      p {
+        margin: 0 0 20px;
+      }
+      .lead {
+        font-size: 17px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #d8dfd6;
+        border-radius: 20px;
+        padding: 28px;
+        margin: 28px 0;
+      }
+      .button {
+        display: block;
+        text-align: center;
+        background: #193e39;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 17px 20px;
+        margin: 22px 0 16px;
+      }
+      .button:focus-visible {
+        outline: 3px solid #bc8648;
+        outline-offset: 4px;
+      }
+      .note {
+        font-size: 13px;
+        color: #63746c;
+        margin: 0;
+      }
+      .steps {
+        padding-left: 22px;
+        font-size: 15px;
+      }
+      .steps li {
+        margin: 10px 0;
+      }
+      .features {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 0;
+        list-style: none;
+      }
+      .features li {
+        font-size: 12px;
+        border: 1px solid #d8dfd6;
+        border-radius: 30px;
+        padding: 4px 12px;
+      }
+      footer {
+        font-size: 12px;
+        color: #63746c;
+        border-top: 1px solid #d8dfd6;
+        padding-top: 18px;
+      }
+      @media (max-width: 420px) {
+        main {
+          padding-top: 30px;
+        }
+        .card {
+          padding: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">AKASAKA BUILDING OS</div>
+      <div class="tag">スタッフ向け・外部テスト</div>
+      <h1>赤坂一棟OSを<br />手元の端末で。</h1>
+      <p class="lead">
+        注文から厨房、お会計まで。<br />スマートフォン・iPadで操作を確認できます。
+      </p>
+      <ul class="features">
+        <li>座席図</li>
+        <li>注文・厨房</li>
+        <li>飲み放題</li>
+        <li>模擬会計</li>
+        <li>端末間同期</li>
+      </ul>
+      <section class="card">
+        <strong>共有されたID・PINをご用意ください。</strong>
+        <a class="button" href="https://symantec-howard-shaped-invite.trycloudflare.com/">テストアプリを開く →</a>
+        <p class="note">
+          決済はすべて模擬です。実際の請求・印刷は行いません。顧客名などは架空のデータでお試しください。
+        </p>
+      </section>
+      <ol class="steps">
+        <li>ログインして「夜営業」から1F / 2Fの席を選ぶ。</li>
+        <li>料理や飲み放題を追加し「厨房へ注文送信」。</li>
+        <li>別の端末で厨房伝票や注文の同期を確認する。</li>
+      </ol>
+      <footer>
+        一時テスト環境です。管理用Mac・Docker・接続プロセスの稼働中だけ開けます。接続できない場合は管理者へお知らせください。<br />この入口はGitHub
+        Pages、注文処理とDBは専用テスト環境で動きます。
+      </footer>
+    </main>
+  </body>
+</html>
