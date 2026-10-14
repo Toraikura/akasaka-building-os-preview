@@ -51,10 +51,25 @@
     .tile p{font-size:12px;color:var(--muted);margin:0 0 15px;flex:1}
     .go{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #edf0ea;padding-top:12px;font-weight:850;font-size:12px;color:#286b50}
     .go span:last-child{font-size:17px}
-    .owner{display:flex;gap:15px;align-items:flex-start;background:#ecf0e9;border:1px solid #d8e2d6;border-radius:18px;padding:22px}
-    .owner-icon{display:flex;align-items:center;justify-content:center;font-size:21px;width:43px;height:43px;background:#fff;border-radius:12px;flex-shrink:0}
-    .owner h2{font-size:17px;margin:0 0 5px}
-    .owner p{font-size:12px;color:var(--muted);margin:0}
+    .pin-entry{margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .pin-form{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:5px 6px 5px 13px;box-shadow:0 3px 12px #132c2108}
+    .pin-form input{width:90px;font-size:14px;letter-spacing:.28em;border:0;outline:0;color:var(--ink);background:transparent}
+    .pin-form input::placeholder{letter-spacing:.13em;color:#8d9e95}
+    .pin-form button{width:35px;height:35px;display:grid;place-items:center;border:0;border-radius:8px;background:var(--brand);color:#fff;cursor:pointer}
+    .pin-form:focus-within{outline:2px solid #87a997;outline-offset:2px}
+    .pin-status{font-size:11px;color:#a15732;min-height:1em}
+    .private-section{margin-top:22px;background:#edf1ea;border:1px solid #d8e3d8;border-radius:18px;padding:22px}
+    .private-section[hidden],.pin-entry[hidden]{display:none}
+    .private-section h2{font-size:18px;margin:0 0 3px}
+    .private-note{font-size:12px;color:var(--muted);margin:0 0 14px}
+    .private-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .private-link{display:block;padding:15px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;font-size:14px;font-weight:800}
+    .private-link small{display:block;margin-top:3px;font-size:11px;color:var(--muted);font-weight:450}
+    .private-link[href]:hover{border-color:#709b83}
+    .private-link:not([href]){opacity:.55;cursor:default}
+    .private-extra{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .private-extra a{font-size:12px;padding:7px 11px;border:1px solid #cbdccd;border-radius:10px;background:#fff;text-decoration:none}
+    .private-extra a:hover{text-decoration:underline}
     .foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;color:#687971;font-size:11px}
     .foot p{margin:0;max-width:680px}
     .foot strong{color:#34594d}
@@ -70,7 +85,8 @@
       .section{margin-bottom:37px}
       .section-head{align-items:flex-start}
       .section-side{margin-top:4px}
-      .owner{padding:18px}
+      .private-section{padding:18px}
+      .private-grid{grid-template-columns:1fr}
       h2{font-size:21px}
     }
     @media(prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
@@ -102,11 +118,11 @@
           <p>仕入れ・食材・原価・レシピ・メニューを管理するアプリ。</p>
           <div class="go"><span>アプリを開く</span><span aria-hidden="true">↗</span></div>
         </a>
-        <a class="tile" href="https://line.me/R/ti/p/@957fprce" target="_blank" rel="noopener noreferrer">
-          <div class="tile-head"><div class="symbol" aria-hidden="true">🧾</div><span class="chip">LINE</span></div>
+        <a class="tile" href="https://aka-menu-lab.153.115.34.17.sslip.io/#/receipts" target="_blank" rel="noopener noreferrer">
+          <div class="tile-head"><div class="symbol" aria-hidden="true">🧾</div><span class="chip">AKA MENU LAB</span></div>
           <h3>レシートアップローダー</h3>
-          <p>「チルラボ｜仕入れアップロード」へレシートや納品書の写真を送信。</p>
-          <div class="go"><span>LINEで開く</span><span aria-hidden="true">↗</span></div>
+          <p>AKA MENU LABのレシート画面へ。ログイン後「レシートを追加」から写真を登録します。</p>
+          <div class="go"><span>レシート登録へ</span><span aria-hidden="true">↗</span></div>
         </a>
         <a class="tile" href="https://manual.chilllabo.tokyo/" target="_blank" rel="noopener noreferrer">
           <div class="tile-head"><div class="symbol" aria-hidden="true">🎬</div><span class="chip">マニュアル</span></div>
@@ -133,19 +149,67 @@
         </a>
       </div>
     </section>
-    <section class="section" aria-label="管理者エリアの公開状況">
-      <div class="owner">
-        <div class="owner-icon" aria-hidden="true">🔒</div>
-        <div>
-          <h2>管理者エリアは別管理</h2>
-          <p>YOSHI専用のリンクはこの公開ページに掲載していません。PINを安全に照合する認証基盤を設けてから接続します。スタッフは上のリンクを利用してください。</p>
+    <section class="section" aria-label="追加リンク">
+      <div class="pin-entry" id="pin-entry">
+        <form id="pin-form" class="pin-form" autocomplete="off">
+          <input id="pin-input" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" minlength="4" placeholder="PIN" aria-label="PIN" autocomplete="off" required>
+          <button type="submit" aria-label="開く">↗</button>
+        </form>
+        <div id="pin-status" class="pin-status" aria-live="polite"></div>
+      </div>
+      <div class="private-section" id="private-section" hidden>
+        <h2>MY WORKSPACE</h2>
+        <p class="private-note">YOSHI専用リンク。アプリ本体の認証・GitHub権限は別途必要です。</p>
+        <div class="private-grid">
+          <a class="private-link" href="https://github.com/Toraikura/h3o-vnext-app" target="_blank" rel="noopener noreferrer">H3O<small>GitHub開発リポジトリ（ブラウザ公開版は未確認） ↗</small></a>
+          <a class="private-link" href="http://127.0.0.1:3210/" target="_blank" rel="noopener noreferrer">SOUVENIR OS<small>Macローカル版（起動中のMacからのみ） ↗</small></a>
+          <div class="private-link">CTRチェッカー<small>公開URL未登録</small></div>
+          <div class="private-link">Chill Labo Growth<small>Web版URL未登録</small></div>
+        </div>
+        <div class="private-extra" aria-label="開発・自動化ツール">
+          <a href="https://github.com/Toraikura/p11-subsidy-radar-mvp" target="_blank" rel="noopener noreferrer">補助金 Radar ↗</a>
+          <a href="https://github.com/Toraikura/cf-radar" target="_blank" rel="noopener noreferrer">CF Radar ↗</a>
+          <a href="https://github.com/Toraikura/x-bookmarks-kb" target="_blank" rel="noopener noreferrer">Opportunity Engine ↗</a>
         </div>
       </div>
     </section>
-    <footer class="foot">
+        <footer class="foot">
       <p><strong>使い方</strong>：このページをホーム画面・ブックマークに登録してください。ここはリンク集です。各アプリのログイン、Google Drive／GitHubの閲覧権限は自動では付与されません。</p>
       <p>CHILL LABO AKASAKA · STAFF WORKSPACE</p>
     </footer>
   </main>
+  <script>
+    (() => {
+      const form = document.getElementById('pin-form');
+      const field = document.getElementById('pin-input');
+      const status = document.getElementById('pin-status');
+      const entry = document.getElementById('pin-entry');
+      const privateSection = document.getElementById('private-section');
+      // This is only a visual convenience gate on static GitHub Pages.
+      // Access control must remain at each destination. Never put credentials here.
+      const checkHash = 'd01163e13be08992b0dd0e327da4a2197fba2c070c4983ebddfb689d3530d41c';
+      const hex = (buf) => Array.from(new Uint8Array(buf), b => b.toString(16).padStart(2, '0')).join('');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        status.textContent = '';
+        try {
+          const value = field.value;
+          if (!/^[0-9]{4}$/.test(value)) return;
+          const digest = hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode('workspace-v1|' + value + '|entry')));
+          field.value = '';
+          if (digest !== checkHash) {
+            status.textContent = 'PINを確認してください';
+            field.focus();
+            return;
+          }
+          entry.hidden = true;
+          privateSection.hidden = false;
+        } catch (error) {
+          status.textContent = 'このブラウザでは開けません';
+          field.value = '';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
