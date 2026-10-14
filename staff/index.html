@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#102b29">
+  <title>CHILL LABO WORKSPACE｜スタッフ用アプリ一覧</title>
+  <meta name="description" content="Chill Labo Akasaka スタッフ向け業務アプリ入口">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink:#17312f;--muted:#61716d;--bg:#f5f6f1;--paper:#fff;--line:#e0e6dd;
+      --brand:#21483e;--mint:#ddf4df;--gold:#dfbb7d;
+      font-family: -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6}
+    a{color:inherit}
+    button,input{font:inherit}
+    .hero{background:radial-gradient(circle at 85% 12%,#32685b 0,transparent 35%),linear-gradient(140deg,#102b29,#234b40);color:#fff;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-130px;bottom:-270px;width:520px;height:520px;border:1px solid #ffffff26;border-radius:50%;pointer-events:none}
+    .inner{width:min(1080px,calc(100% - 40px));margin:auto}
+    .hero .inner{padding:34px 0 52px;position:relative;z-index:1}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-size:12px;font-weight:850;letter-spacing:.2em}
+    .tag{font-size:11px;font-weight:750;border:1px solid #ffffff4d;border-radius:100px;padding:7px 13px;background:#ffffff10}
+    .eyebrow{margin:55px 0 10px;font-size:12px;letter-spacing:.23em;font-weight:800;color:#cce0ce}
+    h1{margin:0;max-width:760px;font-size:clamp(38px,7vw,65px);line-height:1.13;letter-spacing:-.04em}
+    h1 span{color:#bde1bd}
+    .intro{margin:20px 0 0;max-width:620px;color:#e0eae3;font-size:15px}
+    .hero-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:28px}
+    .hero-meta span{border:1px solid #ffffff36;border-radius:8px;padding:6px 12px;font-size:12px}
+    main{padding:38px 0 58px}
+    .section{margin:0 0 46px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:0 0 18px}
+    .section-kicker{font-size:11px;font-weight:900;letter-spacing:.18em;color:#618276;margin:0 0 2px}
+    h2{font-size:23px;letter-spacing:-.045em;line-height:1.4;margin:0}
+    .section-side{font-size:12px;color:var(--muted);white-space:nowrap}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .tile{display:flex;flex-direction:column;min-height:218px;border-radius:19px;border:1px solid var(--line);background:var(--paper);padding:23px 22px 18px;text-decoration:none;box-shadow:0 4px 14px #132c2110;transition:transform .15s,box-shadow .15s,border-color .15s}
+    .tile:hover{transform:translateY(-3px);box-shadow:0 13px 28px #132c2124;border-color:#8aafa0}
+    .tile:focus-visible{outline:3px solid #c68941;outline-offset:4px}
+    .tile-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin:0 0 22px}
+    .symbol{display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:#edf4ea;border-radius:13px;font-size:24px;flex-shrink:0}
+    .chip{font-size:10px;font-weight:800;letter-spacing:.04em;color:#315e45;background:#e9f4e9;border-radius:7px;padding:5px 8px;white-space:nowrap}
+    .chip.test{color:#895e1a;background:#fff0d5}
+    .chip.access{color:#57637c;background:#edf0f8}
+    .tile h3{font-size:18px;letter-spacing:-.02em;margin:0 0 5px}
+    .tile p{font-size:12px;color:var(--muted);margin:0 0 15px;flex:1}
+    .go{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #edf0ea;padding-top:12px;font-weight:850;font-size:12px;color:#286b50}
+    .go span:last-child{font-size:17px}
+    .owner{display:flex;gap:15px;align-items:flex-start;background:#ecf0e9;border:1px solid #d8e2d6;border-radius:18px;padding:22px}
+    .owner-icon{display:flex;align-items:center;justify-content:center;font-size:21px;width:43px;height:43px;background:#fff;border-radius:12px;flex-shrink:0}
+    .owner h2{font-size:17px;margin:0 0 5px}
+    .owner p{font-size:12px;color:var(--muted);margin:0}
+    .foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;color:#687971;font-size:11px}
+    .foot p{margin:0;max-width:680px}
+    .foot strong{color:#34594d}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:580px){
+      .inner{width:min(100% - 30px,1080px)}
+      .hero .inner{padding:25px 0 38px}
+      .eyebrow{margin:43px 0 11px}
+      .intro{font-size:14px}
+      .grid{grid-template-columns:1fr;gap:11px}
+      .tile{min-height:172px;padding:18px}
+      .tile-head{margin-bottom:13px}
+      .section{margin-bottom:37px}
+      .section-head{align-items:flex-start}
+      .section-side{margin-top:4px}
+      .owner{padding:18px}
+      h2{font-size:21px}
+    }
+    @media(prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="inner">
+      <div class="top"><div class="brand">CHILL LABO <span style="opacity:.55">/</span> WORKSPACE</div><span class="tag">STAFF PORTAL</span></div>
+      <p class="eyebrow">AKASAKA · INTERNAL LINKS</p>
+      <h1>仕事の入口を、<br><span>ひとつに。</span></h1>
+      <p class="intro">店舗運営に使うアプリ・ツールをまとめました。スタッフはここをブックマークしておけばOK。各サービスのログインや利用権限は従来どおり必要です。</p>
+      <div class="hero-meta"><span>スタッフ共通</span><span>6 LINKS</span><span>2026.10.14 更新</span></div>
+    </div>
+  </header>
+  <main class="inner">
+    <section class="section" aria-labelledby="ops-heading">
+      <div class="section-head"><div><p class="section-kicker">01 / OPERATIONS</p><h2 id="ops-heading">店舗運営</h2></div><div class="section-side">4つのツール</div></div>
+      <div class="grid">
+        <a class="tile" href="https://akasaka-os-test.xvps.jp/" target="_blank" rel="noopener noreferrer" aria-label="赤坂一棟OS テスト版を開く">
+          <div class="tile-head"><div class="symbol" aria-hidden="true">🏠</div><span class="chip test">TEST版</span></div>
+          <h3>赤坂一棟OS</h3>
+          <p>注文・座席・厨房・会計の操作確認。現在のリンク先は模擬決済のテスト環境です。</p>
+          <div class="go"><span>テスト版を開く</span><span aria-hidden="true">↗</span></div>
+        </a>
+        <a class="tile" href="https://aka-menu-lab.153.115.34.17.sslip.io/" target="_blank" rel="noopener noreferrer">
+          <div class="tile-head"><div class="symbol" aria-hidden="true">🍽️</div><span class="chip">アプリ</span></div>
+          <h3>AKA MENU LAB</h3>
+          <p>仕入れ・食材・原価・レシピ・メニューを管理するアプリ。</p>
+          <div class="go"><span>アプリを開く</span><span aria-hidden="true">↗</span></div>
+        </a>
+        <a class="tile" href="https://line.me/R/ti/p/@957fprce" target="_blank" rel="noopener noreferrer">
+          <div class="tile-head"><div class="symbol" aria-hidden="true">🧾</div><span class="chip">LINE</span></div>
+          <h3>レシートアップローダー</h3>
+          <p>「チルラボ｜仕入れアップロード」へレシートや納品書の写真を送信。</p>
+          <div class="go"><span>LINEで開く</span><span aria-hidden="true">↗</span></div>
+        </a>
+        <a class="tile" href="https://manual.chilllabo.tokyo/" target="_blank" rel="noopener noreferrer">
+          <div class="tile-head"><div class="symbol" aria-hidden="true">🎬</div><span class="chip">マニュアル</span></div>
+          <h3>動画マニュアル</h3>
+          <p>調理・作業手順の動画を確認。動画の管理・追加もこちらに一本化。</p>
+          <div class="go"><span>マニュアルを開く</span><span aria-hidden="true">↗</span></div>
+        </a>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="tools-heading">
+      <div class="section-head"><div><p class="section-kicker">02 / TEAM TOOLS</p><h2 id="tools-heading">予定・コンテンツ制作</h2></div><div class="section-side">2つのツール</div></div>
+      <div class="grid">
+        <a class="tile" href="https://drive.google.com/drive/folders/1-Z8EBCqI-0E7AAho-FnxSzbeNu3Nf7gE" target="_blank" rel="noopener noreferrer">
+          <div class="tile-head"><div class="symbol" aria-hidden="true">🗓️</div><span class="chip access">Google Drive</span></div>
+          <h3>TimeTreeスクショ</h3>
+          <p>TimeTreeのスクリーンショットを新規アップロードする共有フォルダ。</p>
+          <div class="go"><span>アップロード先を開く</span><span aria-hidden="true">↗</span></div>
+        </a>
+        <a class="tile" href="https://github.com/Toraikura/shorts-factory/actions" target="_blank" rel="noopener noreferrer">
+          <div class="tile-head"><div class="symbol" aria-hidden="true">🎞️</div><span class="chip access">GitHub権限が必要</span></div>
+          <h3>SHORTS FACTORY</h3>
+          <p>ショート動画の調査・台本・制作自動化。現状はGitHubの実行管理画面への入口です。</p>
+          <div class="go"><span>実行画面を開く</span><span aria-hidden="true">↗</span></div>
+        </a>
+      </div>
+    </section>
+    <section class="section" aria-label="管理者エリアの公開状況">
+      <div class="owner">
+        <div class="owner-icon" aria-hidden="true">🔒</div>
+        <div>
+          <h2>管理者エリアは別管理</h2>
+          <p>YOSHI専用のリンクはこの公開ページに掲載していません。PINを安全に照合する認証基盤を設けてから接続します。スタッフは上のリンクを利用してください。</p>
+        </div>
+      </div>
+    </section>
+    <footer class="foot">
+      <p><strong>使い方</strong>：このページをホーム画面・ブックマークに登録してください。ここはリンク集です。各アプリのログイン、Google Drive／GitHubの閲覧権限は自動では付与されません。</p>
+      <p>CHILL LABO AKASAKA · STAFF WORKSPACE</p>
+    </footer>
+  </main>
+</body>
+</html>
